@@ -1,8 +1,3 @@
-<%-- 
-    Document   : item-comentarios
-    Created on : 19/06/2018, 23:34:18
-    Author     : thoma
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : item-excluir
-    Created on : 19/06/2018, 23:33:17
-    Author     : thoma
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
