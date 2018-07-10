@@ -33,6 +33,7 @@ public class GetIndexCommand implements Comando {
 //        Boolean logado = true;
 //        request.setAttribute("logado", logado);
         RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+        request.setAttribute("titulo", "Página Inicial");
         dispacher.forward(request, response);
     }
 

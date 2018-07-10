@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author douglas
  */
-@WebServlet(name = "SistemaServlet", urlPatterns = {"/sistema", "/index.html", "/login.html"})
+@WebServlet(name = "SistemaServlet", urlPatterns = {"/index.html", "/login.html", "/usuario-novo.html", "/logout.html", "/item-novo.html", "/item-editar.html", "/item-listar.html", "/item-excluir.html", "/comentar.html", "/avaliar.html", "/ranking.html", "/item.html", "/item-comentarios.html", "/meus-comentarios.html", "/a-avaliar.html", "/trolls.html", "/curadores.html"})
 public class SistemaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String> rotas = new HashMap<>();
-        rotas.put("/index.html", "br.ufjf.dcc192.IndexCommand");
+        rotas.put("/index.html", "br.ufjf.dcc192.GetIndexCommand");
         rotas.put("/login.html", "br.ufjf.dcc192.LoginCommand");
 
         String clazzName = rotas.get(request.getServletPath());
