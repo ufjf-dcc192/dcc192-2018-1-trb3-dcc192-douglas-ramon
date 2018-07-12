@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col col-md-auto">
-            <form>
+            <form method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>

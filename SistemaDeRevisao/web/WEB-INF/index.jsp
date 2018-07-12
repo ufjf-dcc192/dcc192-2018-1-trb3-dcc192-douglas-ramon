@@ -1,3 +1,7 @@
 <%@include file="jspf/header.jspf" %>
-<a href="login.html">Login</a>
+<div class="container text-center">
+    <div class="alert alert-success" role="alert">
+        <h3>Bem vindo ${nome}!</h3>
+    </div>
+</div>
 <%@include file="jspf/footer.jspf" %>

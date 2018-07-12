@@ -16,22 +16,22 @@ import javax.servlet.http.HttpSession;
  *
  * @author douglas
  */
-
 public class PostLoginCommand implements Comando {
 
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/index.jsp");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        
+
         Usuario usuario = UsuarioDAO.getInstance().login(email, senha);
-        if(usuario.getNome_completo() != null) {
+        if (usuario.getNome_completo() != null) {
             String username = usuario.getNome_usuario();
             HttpSession session = request.getSession();
             session.setAttribute("authUser", username);
+            response.sendRedirect("index.html");
+        } else {
+            response.sendRedirect("login.html");
         }
-        dispacher.forward(request, response);
     }
 
 }
