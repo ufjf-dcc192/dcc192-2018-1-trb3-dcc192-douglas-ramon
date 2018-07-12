@@ -18,16 +18,12 @@ CREATE TABLE item (
     id_usuario INTEGER NOT NULL,
     titulo VARCHAR(50) NOT NULL,
     descricao VARCHAR(1000) NOT NULL,
+    link1 VARCHAR(500) NOT NULL,
+    link2 VARCHAR(500),
+    link3 VARCHAR(500),
     data_insert TIMESTAMP NOT NULL,
     data_update TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
-);
-
-CREATE TABLE link (
-    id_link INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    id_item INTEGER NOT NULL,
-    nome VARCHAR(500) NOT NULL,
-    FOREIGN KEY (id_item) REFERENCES item(id_item)
 );
 
 CREATE TABLE comentario (

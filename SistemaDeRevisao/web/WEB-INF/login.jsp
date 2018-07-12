@@ -13,7 +13,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Sign in</button>
             </form>
-            <a href="#">Novo usuário</a>
+            <a href="usuario-novo.html">Novo usuário</a>
         </div>
     </div>
 </div>

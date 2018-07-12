@@ -8,6 +8,9 @@ public class Item {
     private Long id_usuario;
     private String titulo;
     private String descricao;
+    private String link1;
+    private String link2;
+    private String link3;
     private Date dataCriacao;
     private Date dataAtualizacao;
 
@@ -50,11 +53,38 @@ public class Item {
     public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
     }
-    
-    
-    
-    
-    
+
+    public Long getId_item() {
+        return id_item;
+    }
+
+    public void setId_item(Long id_item) {
+        this.id_item = id_item;
+    }
+
+    public String getLink1() {
+        return link1;
+    }
+
+    public void setLink1(String link1) {
+        this.link1 = link1;
+    }
+
+    public String getLink2() {
+        return link2;
+    }
+
+    public void setLink2(String link2) {
+        this.link2 = link2;
+    }
+
+    public String getLink3() {
+        return link3;
+    }
+
+    public void setLink3(String link3) {
+        this.link3 = link3;
+    }
     
 }
 

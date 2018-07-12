@@ -26,6 +26,8 @@ public class SistemaServlet extends HttpServlet {
         rotas.put("/index.html", "br.ufjf.dcc192.GetIndexCommand");
         rotas.put("/usuario-novo.html", "br.ufjf.dcc192.GetUsuarioNovoCommand");
         rotas.put("/item-comentarios.html", "br.ufjf.dcc192.GetItemComentarioCommand");
+        rotas.put("/item-listar.html", "br.ufjf.dcc192.GetItemListarCommand");
+        rotas.put("/item-novo.html", "br.ufjf.dcc192.GetItemNovoCommand");
 
         String clazzName = rotas.get(request.getServletPath());
         try {
@@ -41,6 +43,7 @@ public class SistemaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, String> rotas = new HashMap<>();
         rotas.put("/usuario-novo.html", "br.ufjf.dcc192.PostUsuarioNovoCommand");
+        rotas.put("/item-novo.html", "br.ufjf.dcc192.PostItemNovoCommand");
         
         String clazzName = rotas.get(request.getServletPath());
         try {
