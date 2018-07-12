@@ -16,13 +16,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author douglas
  */
-
-public class GetLoginCommand implements Comando {
+public class GetUsuarioNovoCommand implements Comando {
 
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/login.jsp");
-        request.setAttribute("titulo", "Login");
+        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/usuario-novo.jsp");
+        request.setAttribute("titulo", "Novo Usuário");
         dispacher.forward(request, response);
     }
 

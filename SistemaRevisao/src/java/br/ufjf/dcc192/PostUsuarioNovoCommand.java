@@ -16,14 +16,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author douglas
  */
-
-public class GetLoginCommand implements Comando {
+public class PostUsuarioNovoCommand implements Comando {
 
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/login.jsp");
-        request.setAttribute("titulo", "Login");
-        dispacher.forward(request, response);
+        String nomeCompleto = request.getParameter("nomeCompleto");
+        String nomeUsuario = request.getParameter("nomeUsuario");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        UsuarioDAO.getInstance().novoUsuario(nomeCompleto, nomeUsuario, email, senha);
+        response.sendRedirect("index.html");
     }
 
 }

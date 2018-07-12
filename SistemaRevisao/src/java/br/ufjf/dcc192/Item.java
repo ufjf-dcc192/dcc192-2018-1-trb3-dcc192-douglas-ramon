@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 public class Item {
+    private Long id_item;
+    private Long id_usuario;
     private String titulo;
     private String descricao;
-    private List<String> links;
     private Date dataCriacao;
     private Date dataAtualizacao;
-    private Usuario usuario;
 
     public String getTitulo() {
         return titulo;
@@ -25,14 +25,6 @@ public class Item {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public List<String> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<String> links) {
-        this.links = links;
     }
 
     public Date getDataCriacao() {
@@ -51,12 +43,12 @@ public class Item {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
     
     

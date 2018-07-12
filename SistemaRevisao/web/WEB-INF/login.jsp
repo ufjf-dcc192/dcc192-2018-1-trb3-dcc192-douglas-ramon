@@ -1,23 +1,20 @@
-<%-- 
-    Document   : login
-    Created on : Jul 7, 2018, 12:00:59 PM
-    Author     : douglas
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
-    </head>
-    <body>
-        <h1>Login</h1>
-        <form method="post">
-            <div><label>Usu√°rio: <input name="usuario" required/></label></div>
-            <div><label>Senha: <input name="password" required type="senha"/></label></div>
-            <div><input type="submit"/></div>
-        </form>
-    </body>
-</html>
+<%@include file="jspf/header.jspf" %>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-md-auto">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <a href="#">Novo usu·rio</a>
+        </div>
+    </div>
+</div>
+<%@include file="jspf/footer.jspf" %>

@@ -1,17 +1,29 @@
-<%-- 
-    Document   : usuario-novo
-    Created on : Jul 7, 2018, 11:42:28 AM
-    Author     : douglas
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@include file="jspf/header.jspf" %>
+<div class="container">
+    <form method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nomeCompleto">Nome Completo</label>
+                <input type="text" class="form-control" id="nomeCompleto" placeholder="Nome completo" name="nomeCompleto" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nomeUsuario">Nome de usuário</label>
+                <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome usuário" name="nomeUsuario" required>
+            </div> 
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeHolder="seu@email.com" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+        <button type="reset" class="btn btn-secondary">Limpar Campos</button>
+        <a class="btn btn-danger" href="eventos.html">Voltar</a>
+    </form>
+</div>
+<%@include file="jspf/footer.jspf" %>

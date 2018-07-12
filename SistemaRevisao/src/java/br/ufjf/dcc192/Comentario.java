@@ -13,21 +13,30 @@ import java.util.Date;
  */
 public class Comentario {
 
-    private Usuario proprietario;
+    private Long id_comentario;
+    private Long id_usuario;
     private String texto;
-    private Date dataCriacao;
-    private Date dataAtualizacao;
+    private Date data_insert;
+    private Date data_update;
 
     public Comentario() {
-        dataCriacao = new Date();
+        data_insert = new Date();
     }
 
-    public Usuario getProprietario() {
-        return proprietario;
+    public Long getId_comentario() {
+        return id_comentario;
     }
 
-    public void setProprietario(Usuario proprietario) {
-        this.proprietario = proprietario;
+    public void setId_comentario(Long id_comentario) {
+        this.id_comentario = id_comentario;
+    }
+
+    public Long getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getTexto() {
@@ -38,20 +47,20 @@ public class Comentario {
         this.texto = texto;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
+    public Date getData_insert() {
+        return data_insert;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setData_insert(Date data_insert) {
+        this.data_insert = data_insert;
     }
 
-    public Date getDataAtualizacao() {
-        return dataAtualizacao;
+    public Date getData_update() {
+        return data_update;
     }
 
-    public void setDataAtualizacao(Date dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
+    public void setData_update(Date data_update) {
+        this.data_update = data_update;
     }
 
 }
