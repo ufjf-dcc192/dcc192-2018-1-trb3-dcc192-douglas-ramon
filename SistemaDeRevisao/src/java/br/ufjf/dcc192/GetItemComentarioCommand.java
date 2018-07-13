@@ -20,9 +20,9 @@ public class GetItemComentarioCommand implements Comando {
 
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/item-comentarios.jsp");
-        request.setAttribute("titulo", "Comentários");
-        dispacher.forward(request, response);
+        String webInf = "/WEB-INF/item-comentarios.jsp";
+        String titulo = "Comentários";
+        UsuarioDAO.getInstance().verificaSessionPaginaGet(request, response, webInf, titulo);
     }
 
 }

@@ -1,5 +1,6 @@
 package br.ufjf.dcc192;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,6 +13,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class UsuarioDAO {
 
@@ -70,11 +76,29 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario getUsuarioUsername(String username) {
+    public Usuario getUsuario(String username) {
         Usuario usuario = new Usuario();
         try {
             comando = conexao.createStatement();
             resultado = comando.executeQuery("SELECT * FROM usuario WHERE nome_usuario = '" + username + "'");
+            while (resultado.next()) {
+                usuario.setEmail(resultado.getString("email"));
+                usuario.setId_usuario(resultado.getLong("id_usuario"));
+                usuario.setNome_completo(resultado.getString("nome_completo"));
+                usuario.setNome_usuario(resultado.getString("nome_usuario"));
+                usuario.setSenha(resultado.getString("senha"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuario;
+    }
+    
+    public Usuario getUsuario(Long id_usuario) {
+        Usuario usuario = new Usuario();
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT * FROM usuario WHERE id_usuario = '" + id_usuario + "'");
             while (resultado.next()) {
                 usuario.setEmail(resultado.getString("email"));
                 usuario.setId_usuario(resultado.getLong("id_usuario"));
@@ -167,4 +191,26 @@ public class UsuarioDAO {
         }
         return item;
     }
+    
+    public void verificaSessionPaginaGet(HttpServletRequest request, HttpServletResponse response, String webInf, String tituloPagina) throws ServletException, IOException{
+        HttpSession session = request.getSession();
+        if (session.getAttribute("authUser") == null) {
+            response.sendRedirect("login.html");
+        } else {
+            RequestDispatcher dispacher = request.getRequestDispatcher(webInf);
+            String username = (String) session.getAttribute("authUser");
+            String nome = (String) UsuarioDAO.getInstance().getUsuario(username).getNome_completo();
+            String mensagem = "Olá " + username;
+            String link = "logout.html";
+            String logout = "Logout";
+            request.setAttribute("titulo", tituloPagina);
+            request.setAttribute("authUser", username);
+            request.setAttribute("nome", nome);
+            request.setAttribute("mensagem", mensagem);
+            request.setAttribute("link", link);
+            request.setAttribute("logout", logout);
+            dispacher.forward(request, response);
+        }
+    }
+     
 }

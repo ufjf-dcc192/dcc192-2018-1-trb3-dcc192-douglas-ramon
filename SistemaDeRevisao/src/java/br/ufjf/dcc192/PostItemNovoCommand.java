@@ -30,7 +30,7 @@ public class PostItemNovoCommand implements Comando {
             String link1 = request.getParameter("link1");
             String link2 = request.getParameter("link2");
             String link3 = request.getParameter("link3");
-            Usuario usuario = UsuarioDAO.getInstance().getUsuarioUsername(username);
+            Usuario usuario = UsuarioDAO.getInstance().getUsuario(username);
             if (link2 != null && link3 != null) {
                 UsuarioDAO.getInstance().novoItem(usuario.getId_usuario(), titulo, descricao, link1, link2, link3);
             } else if (link2 != null) {
