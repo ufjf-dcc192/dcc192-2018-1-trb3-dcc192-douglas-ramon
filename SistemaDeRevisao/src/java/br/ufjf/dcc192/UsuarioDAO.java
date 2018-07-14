@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 public class UsuarioDAO {
 
     public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-    
+
     private static Connection conexao;
     private static UsuarioDAO instancia;
     private Statement comando;
@@ -93,7 +93,7 @@ public class UsuarioDAO {
         }
         return usuario;
     }
-    
+
     public Usuario getUsuario(Long id_usuario) {
         Usuario usuario = new Usuario();
         try {
@@ -152,7 +152,7 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void novoItem(Long id_usuario, String titulo, String descricao, String link1, String link2) {
         try {
             Date data_insert = new Date();
@@ -164,7 +164,7 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void novoItem(Long id_usuario, String titulo, String descricao, String link1, String link2, String link3) {
         try {
             Date data_insert = new Date();
@@ -203,8 +203,8 @@ public class UsuarioDAO {
         }
         return ui;
     }
-    
-    public void verificaSessionPaginaGet(HttpServletRequest request, HttpServletResponse response, String webInf, String tituloPagina) throws ServletException, IOException{
+
+    public void verificaSessionPaginaGet(HttpServletRequest request, HttpServletResponse response, String webInf, String tituloPagina) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("authUser") == null) {
             response.sendRedirect("login.html");
@@ -224,14 +224,14 @@ public class UsuarioDAO {
             dispacher.forward(request, response);
         }
     }
-    
-    public int somaPositivo() {
+
+    public int somaPositivoItem(Long id_item) {
         int total = 0;
         try {
             comando = conexao.createStatement();
-            resultado = comando.executeQuery("SELECT COUNT(tipo) FROM avaliacao_item WHERE tipo = true");
-            while(resultado.next()) {
-                total++;
+            resultado = comando.executeQuery("SELECT COUNT(*) AS total FROM avaliacao_item WHERE tipo = TRUE AND id_item = " + id_item + "");
+            if (resultado.next()) {
+                total = resultado.getInt("total");
             }
             resultado.close();
             comando.close();
@@ -240,13 +240,15 @@ public class UsuarioDAO {
         }
         return total;
     }
-    
-    public int somaNegativo() {
+
+    public int somaNegativoItem(Long id_item) {
         int total = 0;
         try {
             comando = conexao.createStatement();
-            resultado = comando.executeQuery("SELECT COUNT(tipo) FROM avaliacao_item WHERE tipo = false");
-            total = resultado.getRow();
+            resultado = comando.executeQuery("SELECT COUNT(*) AS total FROM avaliacao_item WHERE tipo = FALSE AND id_item = " + id_item + "");
+            if (resultado.next()) {
+                total = resultado.getInt("total");
+            }
             resultado.close();
             comando.close();
         } catch (SQLException ex) {
@@ -254,5 +256,5 @@ public class UsuarioDAO {
         }
         return total;
     }
-    
+
 }
