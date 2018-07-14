@@ -6,6 +6,7 @@
 package br.ufjf.dcc192;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class GetItemListarCommand implements Comando {
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String webInf = "/WEB-INF/item-listar.jsp";
         String titulo = "Lista de Itens";
+        List<UsuarioItem> itens = UsuarioDAO.getInstance().listaItem();
+        request.setAttribute("itens", itens);
         UsuarioDAO.getInstance().verificaSessionPaginaGet(request, response, webInf, titulo);
     }
 

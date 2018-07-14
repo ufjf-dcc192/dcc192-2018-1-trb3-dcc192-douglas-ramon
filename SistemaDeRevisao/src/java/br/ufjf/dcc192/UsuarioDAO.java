@@ -98,7 +98,7 @@ public class UsuarioDAO {
         Usuario usuario = new Usuario();
         try {
             comando = conexao.createStatement();
-            resultado = comando.executeQuery("SELECT * FROM usuario WHERE id_usuario = '" + id_usuario + "'");
+            resultado = comando.executeQuery("SELECT * FROM usuario WHERE id_usuario = " + id_usuario + "");
             while (resultado.next()) {
                 usuario.setEmail(resultado.getString("email"));
                 usuario.setId_usuario(resultado.getLong("id_usuario"));
@@ -112,19 +112,26 @@ public class UsuarioDAO {
         return usuario;
     }
 
-    public List<Item> listaItem() {
-        List<Item> itens = new ArrayList<>();
+    public List<UsuarioItem> listaItem() {
+        List<UsuarioItem> itens = new ArrayList<>();
         try {
             comando = conexao.createStatement();
-            resultado = comando.executeQuery("SELECT * FROM item");
+            resultado = comando.executeQuery("SELECT u.nome_usuario, i.* FROM usuario AS u JOIN item AS i ON u.id_usuario = i.id_usuario ORDER BY i.data_insert");
             while (resultado.next()) {
                 Item item = new Item();
+                Usuario usuario = new Usuario();
                 item.setDataAtualizacao(resultado.getTimestamp("data_update"));
                 item.setDataCriacao(resultado.getTimestamp("data_insert"));
                 item.setDescricao(resultado.getString("descricao"));
                 item.setId_usuario(resultado.getLong("id_usuario"));
                 item.setTitulo(resultado.getString("titulo"));
-                itens.add(item);
+                item.setId_item(resultado.getLong("id_item"));
+                item.setLink1(resultado.getString("link1"));
+                item.setLink2(resultado.getString("link2"));
+                item.setLink3(resultado.getString("link3"));
+                usuario.setNome_usuario(resultado.getString("nome_usuario"));
+                UsuarioItem usuarioItem = new UsuarioItem(usuario, item);
+                itens.add(usuarioItem);
             }
             resultado.close();
             comando.close();
@@ -170,11 +177,13 @@ public class UsuarioDAO {
         }
     }
 
-    public Item getItem(Long id_item) {
+    public UsuarioItem getItem(Long id_item) {
         Item item = new Item();
+        Usuario usuario = new Usuario();
+        UsuarioItem ui = new UsuarioItem(usuario, item);
         try {
             comando = conexao.createStatement();
-            resultado = comando.executeQuery("SELECT * FROM item WHERE id_item = " + id_item + "");
+            resultado = comando.executeQuery("SELECT u.nome_usuario, i.* FROM usuario AS u JOIN item AS i ON u.id_usuario = i.id_usuario WHERE id_item = " + id_item + " ORDER BY i.data_insert");
             while (resultado.next()) {
                 item.setDataAtualizacao(resultado.getDate("data_update"));
                 item.setDataCriacao(resultado.getDate("data_insert"));
@@ -185,11 +194,14 @@ public class UsuarioDAO {
                 item.setLink1(resultado.getString("link1"));
                 item.setLink2(resultado.getString("link2"));
                 item.setLink3(resultado.getString("link3"));
+                usuario.setNome_usuario(resultado.getString("nome_usuario"));
+                ui.setItem(item);
+                ui.setUsuario(usuario);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return item;
+        return ui;
     }
     
     public void verificaSessionPaginaGet(HttpServletRequest request, HttpServletResponse response, String webInf, String tituloPagina) throws ServletException, IOException{
@@ -212,5 +224,35 @@ public class UsuarioDAO {
             dispacher.forward(request, response);
         }
     }
-     
+    
+    public int somaPositivo() {
+        int total = 0;
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT COUNT(tipo) FROM avaliacao_item WHERE tipo = true");
+            while(resultado.next()) {
+                total++;
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+    
+    public int somaNegativo() {
+        int total = 0;
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT COUNT(tipo) FROM avaliacao_item WHERE tipo = false");
+            total = resultado.getRow();
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+    
 }

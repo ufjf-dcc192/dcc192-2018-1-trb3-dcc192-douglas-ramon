@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 public class Item {
-    private Long id_item;
-    private Long id_usuario;
-    private String titulo;
-    private String descricao;
-    private String link1;
-    private String link2;
-    private String link3;
-    private Date dataCriacao;
-    private Date dataAtualizacao;
+    Long id_item;
+    Long id_usuario;
+    String titulo;
+    String descricao;
+    String link1;
+    String link2;
+    String link3;
+    Date dataCriacao;
+    Date dataAtualizacao;
 
     public String getTitulo() {
         return titulo;

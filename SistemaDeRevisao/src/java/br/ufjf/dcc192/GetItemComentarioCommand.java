@@ -22,7 +22,18 @@ public class GetItemComentarioCommand implements Comando {
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String webInf = "/WEB-INF/item-comentarios.jsp";
         String titulo = "Comentários";
-        UsuarioDAO.getInstance().verificaSessionPaginaGet(request, response, webInf, titulo);
+        Long id_item = Long.parseLong(request.getParameter("id_item"));
+        UsuarioItem item = UsuarioDAO.getInstance().getItem(id_item);
+        request.setAttribute("item", item);
+        int totalPositivo = UsuarioDAO.getInstance().somaPositivo();
+        int totalNegativo = UsuarioDAO.getInstance().somaNegativo();
+        request.setAttribute("positivo", totalPositivo);
+        request.setAttribute("negativo", totalNegativo);
+        if (item.getItem().getTitulo() != null) {
+            UsuarioDAO.getInstance().verificaSessionPaginaGet(request, response, webInf, titulo);
+        } else {
+            response.sendRedirect("item-listar.html");
+        }
     }
 
 }

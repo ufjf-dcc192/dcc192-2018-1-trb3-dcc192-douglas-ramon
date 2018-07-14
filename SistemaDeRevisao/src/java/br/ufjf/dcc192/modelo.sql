@@ -1,6 +1,5 @@
 DROP TABLE avaliacao_item;
 DROP TABLE avaliacao_comentario;
-DROP TABLE link;
 DROP TABLE item;
 DROP TABLE comentario;
 DROP TABLE usuario;
@@ -19,8 +18,8 @@ CREATE TABLE item (
     titulo VARCHAR(50) NOT NULL,
     descricao VARCHAR(1000) NOT NULL,
     link1 VARCHAR(500) NOT NULL,
-    link2 VARCHAR(500),
-    link3 VARCHAR(500),
+    link2 VARCHAR(500) DEFAULT NULL,
+    link3 VARCHAR(500) DEFAULT NULL,
     data_insert TIMESTAMP NOT NULL,
     data_update TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
@@ -38,7 +37,7 @@ CREATE TABLE comentario (
 CREATE TABLE avaliacao_item (
     id_avaliacao  INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     id_usuario INTEGER NOT NULL,
-    id_item INTEGER,
+    id_item INTEGER NOT NULL,
     tipo BOOLEAN NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_item) REFERENCES item(id_item)
@@ -47,8 +46,38 @@ CREATE TABLE avaliacao_item (
 CREATE TABLE avaliacao_comentario (
     id_avaliacao  INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     id_usuario INTEGER NOT NULL,
-    id_comentario INTEGER,
+    id_comentario INTEGER NOT NULL,
     tipo BOOLEAN NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_comentario) REFERENCES comentario(id_comentario)
 );
+
+INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Ramon Larivoir', 'RmZ', 'rlarivoir@gmail.com', '123');
+
+INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Douglas Baumgratz', 'doug', 'douglas@gmail.com', '123');
+
+INSERT INTO item(id_usuario, titulo, descricao, link1, data_insert) VALUES (1, 'Google', 'Google é um site de pesquisa online', 'www.google.com', '2018-07-10 09:00:00');
+
+INSERT INTO item(id_usuario, titulo, descricao, link1, link2, link3, data_insert) VALUES (2, 'UFJF', 'UFJF é a universidade federal de juiz de fora', 'www.ufjf.br', 'www.ufjf.br/deptocomputacao/', 'www.ufjf.br/pgmc/2016/03/22/defesa-de-tese-de-doutorado-discente-igor-de-oliveira-knop/', '2018-07-10 12:00:00');
+
+INSERT INTO item(id_usuario, titulo, descricao, link1, link2, data_insert) VALUES (1, 'Youtube', 'Youtube é um site para exibição de vídeos', 'www.youtube.com', 'www.youtube.com/user/igorknop', '2018-07-11 09:00:00');
+
+INSERT INTO item(id_usuario, titulo, descricao, link1, link3, data_insert) VALUES (1, 'Globo', 'Este é o site oficial da emissora Globo', 'www.globo.com', 'www.globoesporte.com', '2018-07-12 09:00:00');
+
+INSERT INTO item(id_usuario, titulo, descricao, link1, link2, data_insert) VALUES (2, 'Techtudo', 'Site de tecnologias', 'www.globo.com', 'www.techtudo.com.br/', '2018-07-13 09:00:00');
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 1, true);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 1, true);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 2, false);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 2, true);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 3, true);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 3, false);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 4, false);
+
+INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 4, false);
