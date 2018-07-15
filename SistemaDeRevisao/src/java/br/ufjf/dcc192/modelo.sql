@@ -54,11 +54,11 @@ CREATE TABLE avaliacao_comentario (
     FOREIGN KEY (id_comentario) REFERENCES comentario(id_comentario)
 );
 
-INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Usuário', 'user', 'usuario@gmail.com', '123');
-
 INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Ramon Larivoir', 'RmZ', 'rlarivoir@gmail.com', '123');
 
 INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Douglas Baumgratz', 'doug', 'douglas@gmail.com', '123');
+
+INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Usuário', 'user', 'usuario@gmail.com', '123');
 
 INSERT INTO item(id_usuario, titulo, descricao, link1, data_insert) VALUES (1, 'Google', 'Google é um site de pesquisa online', 'www.google.com', '2018-07-10 09:00:00');
 
@@ -86,4 +86,13 @@ INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 4, false);
 
 INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 4, false);
 
-INSERT INTO comantario(
+INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (1, 1, 'Texto do comentário', '2018-07-10 09:00:00');
+
+INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (2, 1, 'Bla bla bla bla bla bla bla', '2018-07-11 09:00:00');
+
+INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (1, 1, 'Texto qualquer', '2018-07-12 09:00:00');
+
+INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (1, 2, 'Lorem ipsum', '2018-07-10 09:00:00');
+
+INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (1, 2, 'Insira aqui um mensagem inspiradora', '2018-07-11 09:00:00');
+
