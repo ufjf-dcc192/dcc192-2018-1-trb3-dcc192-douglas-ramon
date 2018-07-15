@@ -27,10 +27,10 @@ public class GetItemComentarioCommand implements Comando {
         Long id_item = Long.parseLong(request.getParameter("id_item"));
         UsuarioItem item = UsuarioDAO.getInstance().getItem(id_item);
         request.setAttribute("item", item);
-        int totalPositivo = UsuarioDAO.getInstance().somaPositivoItem(id_item);
-        int totalNegativo = UsuarioDAO.getInstance().somaNegativoItem(id_item);
-        request.setAttribute("positivo", totalPositivo);
-        request.setAttribute("negativo", totalNegativo);
+        int totalPositivoItem = UsuarioDAO.getInstance().somaPositivoItem(id_item);
+        int totalNegativoItem = UsuarioDAO.getInstance().somaNegativoItem(id_item);
+        request.setAttribute("positivoItem", totalPositivoItem);
+        request.setAttribute("negativoItem", totalNegativoItem);
         
         List<UsuarioComentario> comentarios = UsuarioDAO.getInstance().listaComentario(id_item);
         request.setAttribute("comentarios", comentarios);

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author douglas
  */
-@WebServlet(name = "SistemaServlet", urlPatterns = {"/index.html", "/usuario-novo.html", "/item-novo.html", "/item-editar.html", "/item-listar.html", "/item-excluir.html", "/comentar.html", "/avaliar-item.html", "/ranking.html", "/item.html", "/item-comentarios.html", "/meus-comentarios.html", "/a-avaliar.html", "/trolls.html", "/curadores.html"})
+@WebServlet(name = "SistemaServlet", urlPatterns = {"/index.html", "/usuario-novo.html", "/item-novo.html", "/item-editar.html", "/item-listar.html", "/item-excluir.html", "/comentar.html", "/avaliar-item.html", "/avaliar-comentario.html", "/ranking.html", "/item.html", "/item-comentarios.html", "/meus-comentarios.html", "/a-avaliar.html", "/trolls.html", "/curadores.html"})
 public class SistemaServlet extends HttpServlet {
 
     @Override
@@ -45,6 +45,7 @@ public class SistemaServlet extends HttpServlet {
         rotas.put("/usuario-novo.html", "br.ufjf.dcc192.PostUsuarioNovoCommand");
         rotas.put("/item-novo.html", "br.ufjf.dcc192.PostItemNovoCommand");
         rotas.put("/avaliar-item.html", "br.ufjf.dcc192.PostAvaliarItemCommand");
+        rotas.put("/avaliar-comentario.html", "br.ufjf.dcc192.PostAvaliarComentarioCommand");
         
         String clazzName = rotas.get(request.getServletPath());
         try {

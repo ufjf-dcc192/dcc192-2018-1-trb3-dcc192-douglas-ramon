@@ -4,7 +4,7 @@ public class AvaliacaoComentario {
     private Long id_avaliacao;
     private Long id_usuario;
     private Long id_comentario;
-    private boolean tipo;
+    private Boolean tipo;
 
     public Long getId_avaliacao() {
         return id_avaliacao;
@@ -30,11 +30,11 @@ public class AvaliacaoComentario {
         this.id_comentario = id_comentario;
     }
 
-    public boolean isTipo() {
+    public Boolean isTipo() {
         return tipo;
     }
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(Boolean tipo) {
         this.tipo = tipo;
     }
     

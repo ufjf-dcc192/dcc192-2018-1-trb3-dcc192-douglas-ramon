@@ -321,5 +321,97 @@ public class UsuarioDAO {
         }
         return comentarios;
     }
+
+    public int somaPositivoComentario(Long id_comentario) {
+        int total = 0;
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT COUNT(*) AS total FROM avaliacao_comentario WHERE tipo = TRUE AND id_item = " + id_comentario + "");
+            if (resultado.next()) {
+                total = resultado.getInt("total");
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+
+    public int somaNegativoComentario(Long id_comentario) {
+        int total = 0;
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT COUNT(*) AS total FROM avaliacao_comentario WHERE tipo = FALSE AND id_item = " + id_comentario + "");
+            if (resultado.next()) {
+                total = resultado.getInt("total");
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+    
+    public void avaliaComentario(Long id_usuario, Long id_comentario, Boolean tipo) {
+        try {
+            comando = conexao.createStatement();
+            comando.executeUpdate("INSERT INTO avaliacao_comentario(id_usuario, id_item, tipo) VALUES (" + id_usuario + ", " + id_comentario + ", " + tipo + ")");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void atualizaAvaliacaoComentario(Long id_comentario, Long id_usuario, Boolean tipo) {
+        try {
+            comando = conexao.createStatement();
+            comando.executeUpdate("UPDATE avaliacao_comentario SET tipo = " + tipo + " WHERE id_item = " + id_comentario + " AND id_usuario = " + id_usuario + "");
+            comando.close();
+                    } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public AvaliacaoComentario getAvaliacaoComentario(Long id_comentario, Long id_usuario) {
+        AvaliacaoComentario ac = new AvaliacaoComentario();
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT * FROM avaliacao_comentario WHERE id_item = " + id_comentario + " AND id_usuario = " + id_usuario + "");
+            while(resultado.next()) {
+                ac.setId_avaliacao(resultado.getLong("id_avaliacao"));
+                ac.setId_comentario(resultado.getLong("id_comentario"));
+                ac.setId_usuario(resultado.getLong("id_usuario"));
+                ac.setTipo(resultado.getBoolean("tipo"));
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ac;
+    }
+    
+    public Comentario getComentario(Long id_comentario) {
+        Comentario comentario = new Comentario();
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT * FROM comentario WHERE id_comentario = " + id_comentario + "");
+            while(resultado.next()) {
+                comentario.setData_insert(resultado.getTimestamp("data_insert"));
+                comentario.setData_update(resultado.getTimestamp("data_update"));
+                comentario.setId_comentario(resultado.getLong("id_comentario"));
+                comentario.setId_item(resultado.getLong("id_item"));
+                comentario.setId_usuario(resultado.getLong("id_usuario"));
+                comentario.setTexto(resultado.getString("texto"));
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return comentario;
+    }
     
 }
