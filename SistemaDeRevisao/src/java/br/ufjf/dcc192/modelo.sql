@@ -28,10 +28,12 @@ CREATE TABLE item (
 CREATE TABLE comentario (
     id_comentario  INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     id_usuario INTEGER NOT NULL,
+    id_item INTEGER NOT NULL,
     texto VARCHAR(1000) NOT NULL,
     data_insert TIMESTAMP NOT NULL,
     data_update TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_item) REFERENCES item(id_item)
 );
 
 CREATE TABLE avaliacao_item (
@@ -51,6 +53,8 @@ CREATE TABLE avaliacao_comentario (
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_comentario) REFERENCES comentario(id_comentario)
 );
+
+INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Usuário', 'user', 'usuario@gmail.com', '123');
 
 INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Ramon Larivoir', 'RmZ', 'rlarivoir@gmail.com', '123');
 
@@ -81,3 +85,5 @@ INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 3, false);
 INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 4, false);
 
 INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 4, false);
+
+INSERT INTO comantario(

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author douglas
  */
-@WebServlet(name = "SistemaServlet", urlPatterns = {"/index.html", "/usuario-novo.html", "/item-novo.html", "/item-editar.html", "/item-listar.html", "/item-excluir.html", "/comentar.html", "/avaliar.html", "/ranking.html", "/item.html", "/item-comentarios.html", "/meus-comentarios.html", "/a-avaliar.html", "/trolls.html", "/curadores.html"})
+@WebServlet(name = "SistemaServlet", urlPatterns = {"/index.html", "/usuario-novo.html", "/item-novo.html", "/item-editar.html", "/item-listar.html", "/item-excluir.html", "/comentar.html", "/avaliar-item.html", "/ranking.html", "/item.html", "/item-comentarios.html", "/meus-comentarios.html", "/a-avaliar.html", "/trolls.html", "/curadores.html"})
 public class SistemaServlet extends HttpServlet {
 
     @Override
@@ -44,6 +44,7 @@ public class SistemaServlet extends HttpServlet {
         Map<String, String> rotas = new HashMap<>();
         rotas.put("/usuario-novo.html", "br.ufjf.dcc192.PostUsuarioNovoCommand");
         rotas.put("/item-novo.html", "br.ufjf.dcc192.PostItemNovoCommand");
+        rotas.put("/avaliar-item.html", "br.ufjf.dcc192.PostAvaliarItemCommand");
         
         String clazzName = rotas.get(request.getServletPath());
         try {

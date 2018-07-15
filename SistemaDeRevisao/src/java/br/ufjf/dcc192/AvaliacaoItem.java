@@ -1,40 +1,40 @@
 package br.ufjf.dcc192;
 
 public class AvaliacaoItem {
-    private long id_avaliacao;
-    private long id_usuario;
-    private long id_item;
-    private boolean tipo;
+    private Long id_avaliacao;
+    private Long id_usuario;
+    private Long id_item;
+    private Boolean tipo;
 
-    public long getId_avaliacao() {
+    public Long getId_avaliacao() {
         return id_avaliacao;
     }
 
-    public void setId_avaliacao(long id_avaliacao) {
+    public void setId_avaliacao(Long id_avaliacao) {
         this.id_avaliacao = id_avaliacao;
     }
 
-    public long getId_usuario() {
+    public Long getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(long id_usuario) {
+    public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
     }
 
-    public long getId_item() {
+    public Long getId_item() {
         return id_item;
     }
 
-    public void setId_item(long id_item) {
+    public void setId_item(Long id_item) {
         this.id_item = id_item;
     }
 
-    public boolean isTipo() {
+    public Boolean isTipo() {
         return tipo;
     }
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(Boolean tipo) {
         this.tipo = tipo;
     }
     

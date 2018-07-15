@@ -256,5 +256,44 @@ public class UsuarioDAO {
         }
         return total;
     }
+    
+    public void avaliaItem(Long id_usuario, Long id_item, Boolean tipo) {
+        try {
+            comando = conexao.createStatement();
+            comando.executeUpdate("INSERT INTO avaliacao_item(id_usuario, id_item, tipo) VALUES (" + id_usuario + ", " + id_item + ", " + tipo + ")");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void atualizaAvaliacaoItem(Long id_item, Long id_usuario, Boolean tipo) {
+        try {
+            comando = conexao.createStatement();
+            comando.executeUpdate("UPDATE avaliacao_item SET tipo = " + tipo + " WHERE id_item = " + id_item + " AND id_usuario = " + id_usuario + "");
+            comando.close();
+                    } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public AvaliacaoItem getAvaliacaoItem(Long id_item, Long id_usuario) {
+        AvaliacaoItem ai = new AvaliacaoItem();
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT * FROM avaliacao_item WHERE id_item = " + id_item + " AND id_usuario = " + id_usuario + "");
+            while(resultado.next()) {
+                ai.setId_avaliacao(resultado.getLong("id_avaliacao"));
+                ai.setId_item(resultado.getLong("id_item"));
+                ai.setId_usuario(resultado.getLong("id_usuario"));
+                ai.setTipo(resultado.getBoolean("tipo"));
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ai;
+    }
 
 }

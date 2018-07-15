@@ -14,12 +14,20 @@
         <div class="card-link text-center">
             <ul class="list-inline">
                 <li class="list-inline-item justify-content-between align-items-center">
-                    <span class="badge badge-primary badge-pill">${negativo}</span>
-                    <a href="#" class="card-link">Unlike</a>
+                    <form method="post" action="avaliar-item.html" class="list-inline-item">
+                        <span class="badge badge-primary badge-pill">${negativo}</span>
+                        <input type="hidden" name="id_item" value="${item.item.id_item}">
+                        <input type="hidden" name="tipo" value="0">
+                        <button type="subtmit" class="card-item btn btn-link" style="padding: 0;">Unlike</button>
+                    </form>
+                    <form method="post" action="avaliar-item.html" class="list-inline-item">
+                        <input type="hidden" name="id_item" value="${item.item.id_item}">
+                        <input type="hidden" name="tipo" value="1">
+                        <button type="subtmit" class="card-item btn btn-link" style="padding: 0;">Like</button>
+                        <span class="badge badge-primary badge-pill">${positivo}</span>
+                    </form>
                 </li>
                 <li class="list-inline-item justify-content-between align-items-center">
-                    <a href="#" class="card-link">Like</a>
-                    <span class="badge badge-primary badge-pill">${positivo}</span>
                 </li>
             </ul>
         </div>
