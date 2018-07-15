@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@include file="jspf/header.jspf" %>
 <div class="card">
@@ -48,53 +50,24 @@
         </div>
     </div>
 </div>
+<c:forEach var="comentario" items="${comentarios}">
 <div class="container">
     <div class="list-group" style="padding-top: 0.3rem;">
         <div class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Autor Comentário</h5>
+                <h5 class="mb-1">${comentario.usuario.nome_usuario}</h5>
             </div>
-            <p class="mb-1">Texto do comentário</p>
-            <small>
-                <div class="list-inline">
-                    <div class="list-inline-item justify-content-between align-items-center">
-                        <span class="badge badge-primary badge-pill">2</span>
-                        <a href="#" class="card-link">Unlike</a>
-                    </div>
-                    <div class="list-inline-item justify-content-between align-items-center">
-                        <a href="#" class="card-link">Like</a>
-                        <span class="badge badge-primary badge-pill">14</span>
-                    </div>
-                </div>
-            </small>
-        </div>
-    </div>
-    <div class="list-group" style="padding-top: 0.3rem;">
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Autor Comentário</h5>
+            <div class="list-inline">
+                <p class="card-text list-inline-item" style="margin-bottom: 0;"><small class="text-muted">Criado em: <fmt:formatDate value="${comentario.comentario.data_insert}" pattern="dd/MM/yyyy HH:mm"/></small></p>
+                <p class="card-text list-inline-item" style="margin-bottom: 0;">
+                    <small class="text-muted">
+                        Ultima atualização: 
+                        <c:if test="${comentario.comentario.data_update == null}"> - </c:if>
+                        <c:if test="${comentario.comentario.data_update != NULL}"><fmt:formatDate value="${comentario.comentario.data_update}" pattern="dd/MM/yyyy HH:mm"/></c:if>
+                    </small>
+                </p>
             </div>
-            <p class="mb-1">Texto do comentário</p>
-            <small>
-                <div class="list-inline">
-                    <div class="list-inline-item justify-content-between align-items-center">
-                        <span class="badge badge-primary badge-pill">2</span>
-                        <a href="#" class="card-link">Unlike</a>
-                    </div>
-                    <div class="list-inline-item justify-content-between align-items-center">
-                        <a href="#" class="card-link">Like</a>
-                        <span class="badge badge-primary badge-pill">14</span>
-                    </div>
-                </div>
-            </small>
-        </div>
-    </div>
-    <div class="list-group" style="padding-top: 0.3rem;">
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Autor Comentário</h5>
-            </div>
-            <p class="mb-1">Texto do comentário</p>
+            <p class="mb-1">${comentario.comentario.texto}</p>
             <small>
                 <div class="list-inline">
                     <div class="list-inline-item justify-content-between align-items-center">
@@ -110,4 +83,5 @@
         </div>
     </div>
 </div>
+</c:forEach>
 <%@include file="jspf/footer.jspf" %>

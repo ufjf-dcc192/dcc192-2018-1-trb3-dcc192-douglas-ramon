@@ -296,4 +296,30 @@ public class UsuarioDAO {
         return ai;
     }
 
+    public List<UsuarioComentario> listaComentario(Long id_item) {
+        List<UsuarioComentario> comentarios = new ArrayList<>();
+        try {
+            comando = conexao.createStatement();
+            resultado = comando.executeQuery("SELECT u.nome_usuario, c.* FROM usuario AS u JOIN comentario AS c ON u.id_usuario = c.id_usuario WHERE c.id_item = " + id_item + " ORDER BY c.data_insert");
+            while (resultado.next()) {
+                Comentario comentario = new Comentario();
+                Usuario usuario = new Usuario();
+                comentario.setData_insert(resultado.getTimestamp("data_insert"));
+                comentario.setData_update(resultado.getTimestamp("data_update"));
+                comentario.setId_comentario(resultado.getLong("id_comentario"));
+                comentario.setId_item(resultado.getLong("id_item"));
+                comentario.setId_usuario(resultado.getLong("id_usuario"));
+                comentario.setTexto(resultado.getString("texto"));
+                usuario.setNome_usuario(resultado.getString("nome_usuario"));
+                UsuarioComentario usuarioComentario = new UsuarioComentario(usuario, comentario);
+                comentarios.add(usuarioComentario);
+            }
+            resultado.close();
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return comentarios;
+    }
+    
 }

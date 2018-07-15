@@ -13,8 +13,9 @@ import java.util.Date;
  */
 public class Comentario {
 
-    private long id_comentario;
-    private long id_usuario;
+    private Long id_comentario;
+    private Long id_usuario;
+    private Long id_item;
     private String texto;
     private Date data_insert;
     private Date data_update;
@@ -23,20 +24,28 @@ public class Comentario {
         data_insert = new Date();
     }
 
-    public long getId_comentario() {
+    public Long getId_comentario() {
         return id_comentario;
     }
 
-    public void setId_comentario(long id_comentario) {
+    public void setId_comentario(Long id_comentario) {
         this.id_comentario = id_comentario;
     }
 
-    public long getId_usuario() {
+    public Long getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(long id_usuario) {
+    public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public Long getId_item() {
+        return id_item;
+    }
+
+    public void setId_item(Long id_item) {
+        this.id_item = id_item;
     }
 
     public String getTexto() {

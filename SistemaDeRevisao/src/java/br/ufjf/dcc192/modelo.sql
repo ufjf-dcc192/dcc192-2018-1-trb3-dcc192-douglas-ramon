@@ -1,7 +1,7 @@
 DROP TABLE avaliacao_item;
 DROP TABLE avaliacao_comentario;
-DROP TABLE item;
 DROP TABLE comentario;
+DROP TABLE item;
 DROP TABLE usuario;
 
 CREATE TABLE usuario (
@@ -21,7 +21,7 @@ CREATE TABLE item (
     link2 VARCHAR(500) DEFAULT NULL,
     link3 VARCHAR(500) DEFAULT NULL,
     data_insert TIMESTAMP NOT NULL,
-    data_update TIMESTAMP,
+    data_update TIMESTAMP DEFAULT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE comentario (
     id_item INTEGER NOT NULL,
     texto VARCHAR(1000) NOT NULL,
     data_insert TIMESTAMP NOT NULL,
-    data_update TIMESTAMP,
+    data_update TIMESTAMP DEFAULT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_item) REFERENCES item(id_item)
 );
@@ -86,7 +86,7 @@ INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (1, 4, false);
 
 INSERT INTO AVALIACAO_ITEM(id_usuario, id_item, tipo) VALUES (2, 4, false);
 
-INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (1, 1, 'Texto do comentário', '2018-07-10 09:00:00');
+INSERT INTO comentario(id_usuario, id_item, texto, data_insert, data_update) VALUES (1, 1, 'Texto do comentário', '2018-07-10 09:00:00', '2018-07-12 09:00:00');
 
 INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (2, 1, 'Bla bla bla bla bla bla bla', '2018-07-11 09:00:00');
 

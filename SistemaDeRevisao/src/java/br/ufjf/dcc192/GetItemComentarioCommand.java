@@ -6,6 +6,7 @@
 package br.ufjf.dcc192;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public class GetItemComentarioCommand implements Comando {
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String webInf = "/WEB-INF/item-comentarios.jsp";
         String titulo = "Comentários";
+        
         Long id_item = Long.parseLong(request.getParameter("id_item"));
         UsuarioItem item = UsuarioDAO.getInstance().getItem(id_item);
         request.setAttribute("item", item);
@@ -29,6 +31,10 @@ public class GetItemComentarioCommand implements Comando {
         int totalNegativo = UsuarioDAO.getInstance().somaNegativoItem(id_item);
         request.setAttribute("positivo", totalPositivo);
         request.setAttribute("negativo", totalNegativo);
+        
+        List<UsuarioComentario> comentarios = UsuarioDAO.getInstance().listaComentario(id_item);
+        request.setAttribute("comentarios", comentarios);
+        
         if (item.getItem().getTitulo() != null) {
             UsuarioDAO.getInstance().verificaSessionPaginaGet(request, response, webInf, titulo);
         } else {
