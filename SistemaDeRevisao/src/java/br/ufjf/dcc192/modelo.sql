@@ -22,7 +22,7 @@ CREATE TABLE item (
     link3 VARCHAR(500) DEFAULT NULL,
     data_insert TIMESTAMP NOT NULL,
     data_update TIMESTAMP DEFAULT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE comentario (
@@ -32,8 +32,8 @@ CREATE TABLE comentario (
     texto VARCHAR(1000) NOT NULL,
     data_insert TIMESTAMP NOT NULL,
     data_update TIMESTAMP DEFAULT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (id_item) REFERENCES item(id_item)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (id_item) REFERENCES item(id_item) ON DELETE CASCADE
 );
 
 CREATE TABLE avaliacao_item (
@@ -41,8 +41,8 @@ CREATE TABLE avaliacao_item (
     id_usuario INTEGER NOT NULL,
     id_item INTEGER NOT NULL,
     tipo BOOLEAN NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (id_item) REFERENCES item(id_item)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (id_item) REFERENCES item(id_item) ON DELETE CASCADE
 );
 
 CREATE TABLE avaliacao_comentario (
@@ -50,8 +50,8 @@ CREATE TABLE avaliacao_comentario (
     id_usuario INTEGER NOT NULL,
     id_comentario INTEGER NOT NULL,
     tipo BOOLEAN NOT NULL,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (id_comentario) REFERENCES comentario(id_comentario)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (id_comentario) REFERENCES comentario(id_comentario) ON DELETE CASCADE
 );
 
 INSERT INTO usuario(nome_completo, nome_usuario, email, senha) VALUES ('Ramon Larivoir', 'RmZ', 'rlarivoir@gmail.com', '123');

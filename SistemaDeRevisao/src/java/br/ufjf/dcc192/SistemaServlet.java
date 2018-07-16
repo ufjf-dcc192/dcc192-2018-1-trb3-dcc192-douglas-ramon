@@ -28,6 +28,7 @@ public class SistemaServlet extends HttpServlet {
         rotas.put("/item-comentarios.html", "br.ufjf.dcc192.GetItemComentarioCommand");
         rotas.put("/item-listar.html", "br.ufjf.dcc192.GetItemListarCommand");
         rotas.put("/item-editar.html", "br.ufjf.dcc192.GetItemEditarCommand");
+        rotas.put("/item-excluir.html", "br.ufjf.dcc192.GetItemExcluirCommand");
         rotas.put("/item-novo.html", "br.ufjf.dcc192.GetItemNovoCommand");
 
         String clazzName = rotas.get(request.getServletPath());
@@ -49,7 +50,7 @@ public class SistemaServlet extends HttpServlet {
         rotas.put("/avaliar-comentario.html", "br.ufjf.dcc192.PostAvaliarComentarioCommand");
         rotas.put("/comentar.html", "br.ufjf.dcc192.PostComentarioNovoCommand");
         rotas.put("/item-editar.html", "br.ufjf.dcc192.PostItemEditarCommand");
-        rotas.put("/item-excluir.html", "br.ufjf.dcc192.GetItemExcluirCommand");
+        rotas.put("/item-excluir.html", "br.ufjf.dcc192.PostItemExcluirCommand");
         
         String clazzName = rotas.get(request.getServletPath());
         try {

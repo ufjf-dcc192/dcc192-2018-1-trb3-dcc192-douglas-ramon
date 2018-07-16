@@ -17,9 +17,10 @@
                                 </form>
                             </li>
                             <li class="list-inline-item">
-                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#excluirItem" style="padding-left: 0;">
-                                    <small>Excluir Item</small>
-                                </button>
+                                <form method="get" action="item-excluir.html">
+                                    <input type="hidden" name="id_item" value="${item.item.id_item}">
+                                    <button class="btn btn-link" type="submit" style="padding-left: 0;"><small>Excluir Item</small></button>
+                                </form>
                             </li>
                         </c:if>
                     </ul>
@@ -44,27 +45,4 @@
     </div>
 </c:forEach>
 
-<!-- Modal -->
-<div class="modal fade" id="excluirItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Excluir Item</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Tem certeza que deseja excluir este item?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form method="post" action="item-excluir.html">
-                    <input type="hidden" value="${item.item.id_item}" name="id_item">
-                    <button type="submit" class="btn btn-danger">Sim</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <%@include file="jspf/footer.jspf" %>

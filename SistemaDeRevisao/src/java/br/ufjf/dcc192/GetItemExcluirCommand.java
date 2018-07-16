@@ -16,20 +16,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author douglas
  */
-public class PostItemExcluirCommand implements Comando {
+public class GetItemExcluirCommand implements Comando {
 
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("authUser");
-        if (session.getAttribute("authUser") == null) {
-            response.sendRedirect("login.html");
-        } else {
-            Long id_item = Long.parseLong(request.getParameter("id_item"));
-            Usuario usuario = UsuarioDAO.getInstance().getUsuario(username);
-            UsuarioDAO.getInstance().excluirItem(usuario.getId_usuario(), id_item);
-            response.sendRedirect("item-listar.html");
-        }
+        String webInf = "/WEB-INF/item-excluir.jsp";
+        String titulo = "Excluir Item";
+        Long id_item = Long.parseLong(request.getParameter("id_item"));
+        UsuarioItem item = UsuarioDAO.getInstance().getItem(id_item);
+        request.setAttribute("item", item);
+        UsuarioDAO.getInstance().verificaSessionPaginaGet(request, response, webInf, titulo);
     }
 
 }

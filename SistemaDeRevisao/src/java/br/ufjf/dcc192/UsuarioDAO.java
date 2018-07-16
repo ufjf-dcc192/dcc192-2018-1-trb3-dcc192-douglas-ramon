@@ -462,4 +462,14 @@ public class UsuarioDAO {
         }
     }
     
+    public void excluirItem(Long id_usuario, Long id_item) {
+        try {
+            comando = conexao.createStatement();
+            comando.executeUpdate("DELETE FROM item WHERE id_usuario = " + id_usuario + " AND id_item = " + id_item + "");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
