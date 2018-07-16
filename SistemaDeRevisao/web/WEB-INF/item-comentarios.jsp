@@ -75,7 +75,25 @@
         <div class="list-group" style="padding-top: 0.3rem;">
             <div class="list-group-item list-group-item-action flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">${comentario.usuario.nome_usuario}</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <h5 class="mb-1">${comentario.usuario.nome_usuario}</h5>
+                        </li>
+                        <c:if test="${comentario.usuario.nome_usuario == authUser}">
+                            <li class="list-inline-item">
+                                <form method="get" action="comentario-editar.html">
+                                    <input type="hidden" name="id_comentario" value="${comentario.comentario.id_comentario}">
+                                    <button class="btn btn-link" type="submit" style="padding-right: 0;"><small>Editar Comentário</small></button>
+                                </form>
+                            </li>
+                            <li class="list-inline-item">
+                                <form method="get" action="comentario-excluir.html">
+                                    <input type="hidden" name="id_comentario" value="${comentario.comentario.id_comentario}">
+                                    <button class="btn btn-link" type="submit" style="padding-left: 0;"><small>Excluir Comentário</small></button>
+                                </form>
+                            </li>
+                        </c:if>
+                    </ul>
                 </div>
                 <div class="list-inline">
                     <p class="card-text list-inline-item" style="margin-bottom: 0;"><small class="text-muted">Criado em: <fmt:formatDate value="${comentario.comentario.data_insert}" pattern="dd/MM/yyyy HH:mm"/></small></p>

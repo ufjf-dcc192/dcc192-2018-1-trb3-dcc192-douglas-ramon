@@ -472,4 +472,26 @@ public class UsuarioDAO {
         }
     }
     
+    public void atualizaComentario(Long id_usuario, Long id_comentario, String texto) {
+        try {
+            Date data_insert = new Date();
+            Timestamp t_data_insert = new Timestamp(data_insert.getTime());
+            comando = conexao.createStatement();
+            comando.executeUpdate("UPDATE comentario SET texto = '" + texto + "', data_update = '" + t_data_insert + "' WHERE id_usuario = " + id_usuario + " AND id_comentario = " + id_comentario + "");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void excluirComentario(Long id_usuario, Long id_comentario) {
+        try {
+            comando = conexao.createStatement();
+            comando.executeUpdate("DELETE FROM comentario WHERE id_usuario = " + id_usuario + " AND id_comentario = " + id_comentario + "");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
