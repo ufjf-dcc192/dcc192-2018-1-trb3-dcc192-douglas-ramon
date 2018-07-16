@@ -24,6 +24,9 @@ public class GetItemComentarioCommand implements Comando {
         String webInf = "/WEB-INF/item-comentarios.jsp";
         String titulo = "Comentários";
         
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("authUser");
+        request.setAttribute("username", username);
         Long id_item = Long.parseLong(request.getParameter("id_item"));
         UsuarioItem item = UsuarioDAO.getInstance().getItem(id_item);
         request.setAttribute("item", item);

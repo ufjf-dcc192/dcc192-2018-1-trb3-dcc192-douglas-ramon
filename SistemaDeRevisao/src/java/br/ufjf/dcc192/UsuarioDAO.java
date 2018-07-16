@@ -176,6 +176,42 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void atualizaItem(Long id_usuario, Long id_item, String titulo, String descricao, String link1) {
+        try {
+            Date data_insert = new Date();
+            Timestamp t_data_insert = new Timestamp(data_insert.getTime());
+            comando = conexao.createStatement();
+            comando.executeUpdate("UPDATE item SET titulo = '" + titulo + "', descricao = '" + descricao + "', link1 = '" + link1 + "', data_update = '" + t_data_insert + "' WHERE id_usuario = " + id_usuario + " AND id_item = " + id_item + "");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void atualizaItem(Long id_usuario, Long id_item, String titulo, String descricao, String link1, String link2) {
+        try {
+            Date data_insert = new Date();
+            Timestamp t_data_insert = new Timestamp(data_insert.getTime());
+            comando = conexao.createStatement();
+            comando.executeUpdate("UPDATE item SET titulo = '" + titulo + "', descricao = '" + descricao + "', link1 = '" + link1 + "', link2 = '" + link2 + "', data_update = '" + t_data_insert + "' WHERE id_usuario = " + id_usuario + " AND id_item = " + id_item + "");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void atualizaItem(Long id_usuario, Long id_item, String titulo, String descricao, String link1, String link2, String link3) {
+        try {
+            Date data_insert = new Date();
+            Timestamp t_data_insert = new Timestamp(data_insert.getTime());
+            comando = conexao.createStatement();
+            comando.executeUpdate("UPDATE item SET titulo = '" + titulo + "', descricao = '" + descricao + "', link1 = '" + link1 + "', link2 = '" + link2 + "', link3 = '" + link3 + "', data_update = '" + t_data_insert + "' WHERE id_usuario = " + id_usuario + " AND id_item = " + id_item + "");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public UsuarioItem getItem(Long id_item) {
         Item item = new Item();
@@ -412,6 +448,18 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return comentario;
+    }
+    
+    public void novoComentario(Long id_usuario, Long id_item, String texto) {
+        try {
+            Date data_insert = new Date();
+            Timestamp t_data_insert = new Timestamp(data_insert.getTime());
+            comando = conexao.createStatement();
+            comando.executeUpdate("INSERT INTO comentario(id_usuario, id_item, texto, data_insert) VALUES (" + id_usuario + ", " + id_item + ", '" + texto + "', '" + t_data_insert + "')");
+            comando.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
